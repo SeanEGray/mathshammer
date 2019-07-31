@@ -6,11 +6,15 @@ pr:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
 - pwsh: Invoke-Pester *.Tests.ps1
   displayName: 'Run helper module tests'
-  workingDirectory: Modules/MathshammerHelper/Tests
+  workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/MathshammerHelper/Tests'
 
+- task: PublishTestResults
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: '**/TEST-*.xml' 
 
