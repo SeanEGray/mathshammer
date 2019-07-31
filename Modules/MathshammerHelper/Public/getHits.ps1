@@ -1,15 +1,15 @@
 function getHits {
     Param (
         [Parameter(Mandatory=$true)]
-        [ValidateRange(Positive)]
+        [ValidateRangeKind(Positive)]
         [int]
         $bs,
         [Parameter(Mandatory=$true)]
-        [ValidateRange(Positive)]
+        [ValidateRangeKind(Positive)]
         [int]
         $numModels,
         [Parameter(Mandatory=$true)]
-        [ValidateRange(Positive)]
+        [ValidateRangeKind(Positive)]
         [int]
         $attacks
     )
