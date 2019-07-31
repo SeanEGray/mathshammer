@@ -11,7 +11,6 @@ Describe 'Roll to hit' {
             foreach ($i in (2..6)) {
                 getHits -bs $i -numModels $numModels -attacks $attacks | Should -Be ((7 - $i) / 6)
             }
-
         }
         It 'A natural roll of 1 is always a failure' {
             # I'm not convinced by this
