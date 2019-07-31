@@ -1,7 +1,17 @@
 function getHits {
     param (
+        Parameter(Mandatory=$true)
+        [ValidateRange(Positive)]
+        [int]
         $bs,
+        Parameter(Mandatory=$true)
+        [ValidateRange(Positive)]
+        [int]
         $numModels,
+        Parameter(Mandatory=$true)
+        [ValidateRange(Positive)]
+        [int]
+        [Validate]
         $attacks
     )
 
