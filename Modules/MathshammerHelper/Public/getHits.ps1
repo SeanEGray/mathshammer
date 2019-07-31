@@ -7,14 +7,14 @@ function getHits {
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
         [int]
-        $numModels,
+        $models,
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
         [int]
         $attacks
     )
 
-    $totalAttacks = $attacks * $numModels
+    $totalAttacks = $attacks * $models
 
     if ($bs -eq 1) {
         # Natural 1s always fail
