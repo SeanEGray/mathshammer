@@ -9,11 +9,11 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- pwsh: Invoke-Pester *.Tests.ps1
+- pwsh: Invoke-Pester -Script *.Tests.ps1 -OutputFormat NUnitXml -OutputFile 'TEST-HelperModule.xml'
   displayName: 'Run helper module tests'
   workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/MathshammerHelper/Tests'
 
-- task: PublishTestResults
+- task: PublishTestResults@2
   inputs:
     testResultsFormat: NUnit
     testResultsFiles: '**/TEST-*.xml' 
