@@ -6,10 +6,10 @@ pr:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
-- powershell: Invoke-Pester -Script *.Tests.ps1 -OutputFormat NUnitXml -OutputFile 'TEST-HelperModule.xml'
+- pwsh: ./runTests.ps1
   displayName: 'Run helper module tests'
   workingDirectory: '$(Build.SourcesDirectory)/Modules/MathshammerHelper/Tests'
 
