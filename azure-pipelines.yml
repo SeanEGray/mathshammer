@@ -9,9 +9,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- powershell: Invoke-Pester -Script *.Tests.ps1 -OutputFormat NUnitXml -OutputFile 'TEST-HelperModule.xmlCorr '
+- powershell: Invoke-Pester -Script *.Tests.ps1 -OutputFormat NUnitXml -OutputFile 'TEST-HelperModule.xml'
   displayName: 'Run helper module tests'
-  workingDirectory: '$(System.DefaultWorkingDirectory)/Modules/MathshammerHelper/Tests'
+  workingDirectory: '$(Build.SourcesDirectory)/Modules/MathshammerHelper/Tests'
 
 - task: PublishTestResults@2
   inputs:
