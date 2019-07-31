@@ -1,4 +1,4 @@
-Import-Module '../MathshammerHelper.psd1'
+Import-Module "$($env:Build_SourcesDirectory)/MathshammerHelper.psd1"
 
 # Some detaults
 $bs = 3
