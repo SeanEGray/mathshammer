@@ -1,4 +1,4 @@
-Import-Module ../Mathshammerhelper.psd1
+Import-Module '../MathshammerHelper.psd1'
 
 # Some detaults
 $bs = 3
