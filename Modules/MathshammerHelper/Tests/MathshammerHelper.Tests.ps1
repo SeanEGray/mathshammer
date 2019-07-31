@@ -9,7 +9,7 @@ Describe 'Roll to hit' {
     Context 'Basic tests' {
         It 'Calculates basic scenarios correclty' {
             foreach ($i in (2..6)) {
-                getHits -bs $i -numModels $numModels -attacks $attacks | Should -Be ((7 - $i) / 6) * $attacks * $numModels
+                getHits -bs $i -numModels $numModels -attacks $attacks | Should -Be (((7 - $i) / 6) * $attacks * $numModels)
             }
         }
         It 'A natural roll of 1 is always a failure' {
