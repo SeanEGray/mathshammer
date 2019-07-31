@@ -9,7 +9,7 @@ Describe 'Roll to hit' {
     Context 'Basic tests' {
         It 'Calculates basic scenarios correclty' {
             foreach ($i in (2..6)) {
-                getHits -bs $i -numModels $numModels -attacks $attacks | Should -Be ((7 - $i) / 6)
+                getHits -bs $i -numModels $numModels -attacks $attacks | Should -Be ((7 - $i) / 6) * $attacks * $numModels
             }
         }
         It 'A natural roll of 1 is always a failure' {
@@ -19,8 +19,7 @@ Describe 'Roll to hit' {
             $bs1Hits | Should -Be $bs2Hits
         }
     }
-    Context 'Validity checks'
-    {
+    Context 'Validity checks' {
         It 'Does not accept stupid values for parameters' {
             { getHits -bs -4 -numModels $numModels -attacks $attacks } | Should -Throw
             { getHits -bs 'x' -numModels $numModels -attacks $attacks } | Should -Throw
