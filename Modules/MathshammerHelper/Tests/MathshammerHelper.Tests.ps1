@@ -80,8 +80,8 @@ Describe 'Roll to wound' {
 Describe 'Roll to save' {
     Context 'Basic tests' {
         It 'Calculates basic scenarios correctly' {
-            foreach ($ap in (0..6)) {
-                foreach ($save in (0..6)) {
+            foreach ($ap in (0, 2..6)) {
+                foreach ($save in (0, 2..6)) {
                     foreach ($invulnerableSave in (0..6)) {
                         if ($save -eq 0 -and $invulnerableSave -eq 0) {
                             # No save
