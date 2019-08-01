@@ -90,17 +90,21 @@ Describe 'Roll to save' {
                         elseif ($invulnerableSave -gt 0 -and ($invulnerableSave -lt ($save + $ap) -or $save -eq 0)) {
                             # Invulnerable save is used
                             if ($invulnerableSave -eq 1) {
-                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (5 / 6))
+                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (1 / 6))
                             }
-                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * ((7 - $invulnerableSave) / 6))
+                            else {
+                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (($invulnerableSave - 1) / 6))
+                            }
                         }
                         else {
                             # Save is used
                             # Definitely not sure of this
                             if (($save + $ap) -eq 1) {
-                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (5 / 6))
+                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (1 / 6))
                             }
-                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (((7 - ($save + $ap)) / 6)))
+                            else {
+                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (($save + $ap) -1 / 6))
+                            }
                         }
                     }
                 }
