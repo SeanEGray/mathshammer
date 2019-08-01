@@ -37,7 +37,28 @@ Describe 'Roll to hit' {
 Describe 'Roll to wound' {
     Context 'Basic tests' {
         It 'Calculates basic scenarios correctly' {
-            
+            foreach ($s in (1..10)) {
+                foreach ($t in (1..10)) {
+                    if ($s -eq $t) {
+                        getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (0.5))
+                    }
+                    elseif ($s -lt (0.5 * $t)) {
+                        getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (1 / 6))
+                    }
+                    elseif ($s -lt $t) {
+                        getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (2 / 6))
+                    }
+                    elseif ($s -gt (2 * $t)) {
+                        getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (5 / 6))
+                    }
+                    elseif ($s -gt $t)) {
+                        getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (4 / 6))
+                    }
+                    else {
+                        throw 'Test is somehow doing impossible maths.'
+                    }
+                }
+            }
         }
     }
 }
