@@ -7,6 +7,10 @@ $attacks = 2
 $hits = 10
 $s = 4
 $t = 4
+$wounds = 5
+$ap = 1
+$save = 2
+$invulnerableSave = 4
 
 Describe 'Roll to hit' {
     Context 'Basic tests' {
@@ -63,12 +67,49 @@ Describe 'Roll to wound' {
     }
     Context 'Validity checks' {
         It 'Does not accept stupid values for parameters' {
-            { getHits -hits -4 -s $s -t $t } | Should -Throw
-            { getHits -hits 'x' -s $s -t $t } | Should -Throw
-            { getHits -hits $hits -s 'banana' -t $t } | Should -Throw
-            { getHits -hits $hits -s 0 -t $t } | Should -Throw
-            { getHits -hits $hits -s $s -t -50 } | Should -Throw
-            { getHits -hits $hits -s $s -t 'twelve' } | Should -Throw
+            { getWounds -hits -4 -s $s -t $t } | Should -Throw
+            { getWounds -hits 'x' -s $s -t $t } | Should -Throw
+            { getWounds -hits $hits -s 'banana' -t $t } | Should -Throw
+            { getWounds -hits $hits -s 0 -t $t } | Should -Throw
+            { getWounds -hits $hits -s $s -t -50 } | Should -Throw
+            { getWounds -hits $hits -s $s -t 'twelve' } | Should -Throw
+        }
+    }
+}
+
+Describe 'Roll to save' {
+    Context 'Basic tests' {
+        It 'Calculates basic scenarios correctly' {
+            foreach ($ap in (0..6)) {
+                foreach ($save in (0..6)) {
+                    foreach ($invulnerableSave in (0..6)) {
+                        if ($save -eq 0 -and $invulnerableSave -eq 0) {
+                            # No save
+                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be $wounds
+                        }
+                        elseif ($invulnerableSave -gt 0 -and $invulnerableSave -lt ($save + $ap)) {
+                            # Invulnerable save is used
+                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * ((7 - $invulnerableSave) / 6))
+                        }
+                        else {
+                            # Save is used
+                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * ((7 - ($save + $ap) / 6))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    Context 'Validity checks' {
+        It 'Does not accept stupid values for parameters' {
+            { getUnsavedWounds -wounds -4 -ap $ap -save $save -invulnerableSave $invulnerableSave } | Should -Throw
+            { getUnsavedWounds -wounds 'x' -ap $ap -save $save -invulnerableSave $invulnerableSave } | Should -Throw
+            { getUnsavedWounds -wounds $wounds -ap 'banana' -save $save -invulnerableSave $invulnerableSave } | Should -Throw
+            { getUnsavedWounds -wounds $wounds -ap -50 -save $save -invulnerableSave $invulnerableSave } | Should -Throw
+            { getUnsavedWounds -wounds $wounds -ap $ap -save 'twelve' -invulnerableSave $invulnerableSave } | Should -Throw
+            { getUnsavedWounds -wounds $wounds -ap $ap -save -1 -invulnerableSave $invulnerableSave } | Should -Throw
+            { getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave -8 } | Should -Throw
+            { getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave 'pikachu' } | Should -Throw
         }
     }
 }
