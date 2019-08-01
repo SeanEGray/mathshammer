@@ -61,4 +61,14 @@ Describe 'Roll to wound' {
             }
         }
     }
+    Context 'Validity checks' {
+        It 'Does not accept stupid values for parameters' {
+            { getHits -hits -4 -s $s -t $t } | Should -Throw
+            { getHits -hits 'x' -s $s -t $t } | Should -Throw
+            { getHits -hits $hits -s 'banana' -t $t } | Should -Throw
+            { getHits -hits $hits -s 0 -t $t } | Should -Throw
+            { getHits -hits $hits -s $s -t -50 } | Should -Throw
+            { getHits -hits $hits -s $s -t 'twelve' } | Should -Throw
+        }
+    }
 }
