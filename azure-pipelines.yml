@@ -17,5 +17,6 @@ steps:
   inputs:
     testResultsFormat: NUnit
     testResultsFiles: '**/TEST-*.xml' 
+    failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
