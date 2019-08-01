@@ -90,7 +90,7 @@ Describe 'Roll to save' {
                         elseif ($invulnerableSave -gt 0 -and $invulnerableSave -lt ($save + $ap)) {
                             # Invulnerable save is used
                             if ($invulnerableSave -eq 1) {
-                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (5 / 6)
+                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (5 / 6))
                             }
                             getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * ((7 - $invulnerableSave) / 6))
                         }
