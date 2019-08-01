@@ -32,7 +32,13 @@ function getUnsavedWounds {
         $roll = $effectiveSave
     }
 
-    $chanceToUnsavedWound = (7 - $roll) / 6
+    if ($roll -eq 0) {
+        $chanceToUnsavedWound = 1
+    } 
+    else {
+        $chanceToUnsavedWound = (7 - $roll) / 6
+    }
+    
 
     $totalUnsavedWounds = $wounds * $chanceToUnsavedWound
     return $totalUnsavedWounds
