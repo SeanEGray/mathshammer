@@ -34,6 +34,6 @@ function getUnsavedWounds {
 
     $chanceToUnsavedWound = (7 - $roll) / 6
 
-    $totalUnsavedWounds = $hits * $chanceToUnsavedWound
+    $totalUnsavedWounds = $wounds * $chanceToUnsavedWound
     return $totalUnsavedWounds
 }
