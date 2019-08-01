@@ -42,13 +42,13 @@ Describe 'Roll to wound' {
                     if ($s -eq $t) {
                         getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (0.5))
                     }
-                    elseif ($s -lt (0.5 * $t)) {
+                    elseif ($s -le (0.5 * $t)) {
                         getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (1 / 6))
                     }
                     elseif ($s -lt $t) {
                         getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (2 / 6))
                     }
-                    elseif ($s -gt (2 * $t)) {
+                    elseif ($s -ge (2 * $t)) {
                         getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (5 / 6))
                     }
                     elseif ($s -gt $t) {
