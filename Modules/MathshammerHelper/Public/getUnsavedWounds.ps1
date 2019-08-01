@@ -5,15 +5,15 @@ function getUnsavedWounds {
         [int]
         $wounds,
         [Parameter(Mandatory=$false)]
-        [ValidateRange('NotNegative')]
+        [ValidateRange('NonNegative')]
         [int]
         $ap = 0,
         [Parameter(Mandatory=$false)]
-        [ValidateRange('NotNegative')]
+        [ValidateRange('NonNegative')]
         [int]
         $save = 0,
         [Parameter(Mandatory=$false)]
-        [ValidateRange('NotNegative')]
+        [ValidateRange('NonNegative')]
         [int]
         $invulnerableSave = 0
     )
