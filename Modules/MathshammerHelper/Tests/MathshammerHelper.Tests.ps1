@@ -98,7 +98,7 @@ Describe 'Roll to save' {
                             # Save is used
                             # Definitely not sure of this
                             if (($save + $ap) -eq 1) {
-                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (((7 - ($save + $ap)) / 6)))
+                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (5 / 6))
                             }
                             getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (((7 - ($save + $ap)) / 6)))
                         }
