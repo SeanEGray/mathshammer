@@ -36,6 +36,10 @@ function getUnsavedWounds {
         $chanceToUnsavedWound = 1
     } 
     else {
+        if ($roll -eq 1) {
+            # Natural 1s always fail
+            $roll = 2
+        }
         $chanceToUnsavedWound = (7 - $roll) / 6
     }
     
