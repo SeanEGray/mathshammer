@@ -93,7 +93,7 @@ Describe 'Roll to save' {
                         }
                         else {
                             # Save is used
-                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * ((7 - ($save + $ap) / 6)))
+                            getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (((7 - ($save + $ap)) / 6)))
                         }
                     }
                 }
