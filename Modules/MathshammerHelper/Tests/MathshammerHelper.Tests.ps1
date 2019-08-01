@@ -51,7 +51,7 @@ Describe 'Roll to wound' {
                     elseif ($s -gt (2 * $t)) {
                         getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (5 / 6))
                     }
-                    elseif ($s -gt $t)) {
+                    elseif ($s -gt $t) {
                         getWounds -hits $hits -s $s -t $t | Should -Be ($hits * (4 / 6))
                     }
                     else {
