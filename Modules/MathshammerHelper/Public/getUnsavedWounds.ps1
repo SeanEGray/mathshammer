@@ -40,7 +40,7 @@ function getUnsavedWounds {
             # Natural 1s always fail
             $roll = 2
         }
-        $chanceToUnsavedWound = ($roll - 1) / 6))
+        $chanceToUnsavedWound = (($roll - 1) / 6)
     }
     
 
