@@ -25,7 +25,7 @@ function getUnsavedWounds {
         $effectiveSave = $save + $ap
     }
     
-    if ($invulnerableSave -ne 0 -and $effectiveSave -gt $invulnerableSave) {
+    if ($invulnerableSave -ne 0 -and ($effectiveSave -gt $invulnerableSave -or $effectiveSave -eq 0)) { # Using 0 for no save is getting complicated; need a better way
         $roll = $invulnerableSave
     }
     else {
@@ -43,6 +43,9 @@ function getUnsavedWounds {
         $chanceToUnsavedWound = (($roll - 1) / 6)
     }
     
+    if ($chanceToUnsavedWound -gt 1) { # Easiest way to handle 7+ saves
+        $chanceToUnsavedWound = 1
+    }
 
     $totalUnsavedWounds = $wounds * $chanceToUnsavedWound
     return $totalUnsavedWounds
