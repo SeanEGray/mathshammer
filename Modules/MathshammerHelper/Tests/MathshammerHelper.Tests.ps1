@@ -104,6 +104,7 @@ Describe 'Roll to save' {
                             # Save is used
                             # Definitely not sure of this
                             if (($save + $ap) -eq 1) {
+                                # Natural 1s always fail
                                 getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (1 / 6))
                             }
                             else {
@@ -111,7 +112,7 @@ Describe 'Roll to save' {
                                     getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be $wounds
                                 }
                                 else {
-                                    getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (($save + $ap) -1 / 6))
+                                    getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (($save + $ap -1) / 6))
                                 }
                             }
                         }
