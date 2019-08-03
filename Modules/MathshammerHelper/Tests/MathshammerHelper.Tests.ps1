@@ -15,6 +15,9 @@ $unsavedWounds = 3
 $damage = 3
 $targetWounds = 2
 $targetModels = 5
+$remainingModels = 3
+$destroyedModels = 2
+$leadership = 8
 
 Describe 'Roll to hit' {
     Context 'Basic tests' {
@@ -159,6 +162,22 @@ Describe 'Roll for damage' {
             { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds 'Lots' -targetModels $targetModels } | Should -Throw
             { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds $targetWounds -targetModels 'a shitload' } | Should -Throw
             { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds $targetWounds -targetModels 500 } | Should -Throw
+        }
+    }
+}
+
+Describe 'Morale test' {
+    Context 'Basic tests' {
+
+    }
+    Context 'Validity checks' {
+        It 'Does not accept stupid values for parameters' {
+            { getCravens -remainingModels 50 -destroyedModels $destroyedModels -leadership $leadership } | Should -Throw
+            { getCravens -remainingModels -3 -destroyedModels $destroyedModels -leadership $leadership } | Should -Throw
+            { getCravens -remainingModels $remainingModels -destroyedModels 100 -leadership $leadership } | Should -Throw
+            { getCravens -remainingModels $remainingModels -destroyedModels 'all of them' -leadership $leadership } | Should -Throw
+            { getCravens -remainingModels $remainingModels -destroyedModels $destroyedModels -leadership 0 } | Should -Throw
+            { getCravens -remainingModels $remainingModels -destroyedModels $destroyedModels -leadership 'space marine' } | Should -Throw
         }
     }
 }
