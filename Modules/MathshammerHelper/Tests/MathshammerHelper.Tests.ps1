@@ -107,7 +107,12 @@ Describe 'Roll to save' {
                                 getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (1 / 6))
                             }
                             else {
-                                getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (($save + $ap) -1 / 6))
+                                if ($save + $ap -gt 6) {
+                                    getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be $wounds
+                                }
+                                else {
+                                    getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave $invulnerableSave | Should -Be ($wounds * (($save + $ap) -1 / 6))
+                                }
                             }
                         }
                     }
