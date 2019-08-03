@@ -11,6 +11,10 @@ $wounds = 5
 $ap = 1
 $save = 2
 $invulnerableSave = 4
+$unsavedWounds = 3
+$damage = 3
+$targetWounds = 2
+$targetModels = 5
 
 Describe 'Roll to hit' {
     Context 'Basic tests' {
@@ -121,6 +125,34 @@ Describe 'Roll to save' {
             { getUnsavedWounds -wounds $wounds -ap $ap -save -1 -invulnerableSave $invulnerableSave } | Should -Throw
             { getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave -8 } | Should -Throw
             { getUnsavedWounds -wounds $wounds -ap $ap -save $save -invulnerableSave 'pikachu' } | Should -Throw
+        }
+    }
+}
+
+Describe 'Roll for damage' {
+    Context 'Basic tests' {
+        It 'returns lower of unsavedWounds and targetModels when targetWounds is 1' {
+            $res = getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds 1 -targetModels $targetModels
+            $res.totalDamage = [math]::min($unsavedWounds, $targetModels)
+            $res.modelsDestroyed = [math]::min($unsavedWounds, $targetModels)
+        }
+        It 'destroys the target unit if the unsavedWounds >= targetModels and damage >= targetWounds' {
+            $res = getDamage -unsavedWounds 5 -damage 2 -targetWounds 2 -targetModels 5
+            $res.totalDamage = $targetModels * $targetWounds
+            $res.modelsDestroyed = $targetModels
+        }
+        
+    }
+    Context 'Validity checks' {
+        It 'Does not accept stupid values for parameters' {
+            { getDamage -unsavedWounds -3 -damage $damage -targetWounds $targetWounds -targetModels $targetModels } | Should -Throw
+            { getDamage -unsavedWounds 'all of them' -damage $damage -targetWounds $targetWounds -targetModels $targetModels } | Should -Throw
+            { getDamage -unsavedWounds $unsavedWounds -damage -5 -targetWounds $targetWounds -targetModels $targetModels } | Should -Throw
+            { getDamage -unsavedWounds $unsavedWounds -damage 'BOOM!' -targetWounds $targetWounds -targetModels $targetModels } | Should -Throw
+            { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds 0 -targetModels $targetModels } | Should -Throw
+            { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds 'Lots' -targetModels $targetModels } | Should -Throw
+            { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds $targetWounds -targetModels 'a shitload' } | Should -Throw
+            { getDamage -unsavedWounds $unsavedWounds -damage $damage -targetWounds $targetWounds -targetModels 500 } | Should -Throw
         }
     }
 }
