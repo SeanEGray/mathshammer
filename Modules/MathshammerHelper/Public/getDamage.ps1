@@ -44,7 +44,7 @@ function getDamage {
 
     $returnObject = @{
         totalDamage = $totalDamage
-        $destroyedModels = $targetUnit.where({($_ -eq 0).Count})
+        destroyedModels = $targetUnit.where({($_ -eq 0).Count})
     }
 
     return $returnObject
