@@ -169,7 +169,7 @@ InModuleScope MathshammerHelper {
 
     Describe 'Morale test' {
         Context 'Basic tests' {
-
+            
         }
         Context 'Validity checks' {
             It 'Does not accept stupid values for parameters' {
