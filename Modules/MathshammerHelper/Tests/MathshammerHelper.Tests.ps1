@@ -1,25 +1,25 @@
 Import-Module "../MathshammerHelper.psm1"
 
-# Some detaults
-$bs = 3
-$models = 10
-$attacks = 2
-$hits = 10
-$s = 4
-$t = 4
-$wounds = 5
-$ap = 1
-$save = 2
-$invulnerableSave = 4
-$unsavedWounds = 3
-$damage = 3
-$targetWounds = 2
-$targetModels = 5
-$remainingModels = 3
-$destroyedModels = 2
-$leadership = 8
-
 InModuleScope MathshammerHelper {
+    # Some detaults
+    $bs = 3
+    $models = 10
+    $attacks = 2
+    $hits = 10
+    $s = 4
+    $t = 4
+    $wounds = 5
+    $ap = 1
+    $save = 2
+    $invulnerableSave = 4
+    $unsavedWounds = 3
+    $damage = 3
+    $targetWounds = 2
+    $targetModels = 5
+    $remainingModels = 3
+    $destroyedModels = 2
+    $leadership = 8
+
     Describe 'Roll to hit' {
         Context 'Basic tests' {
             It 'Calculates basic scenarios correclty' {
