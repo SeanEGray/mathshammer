@@ -2,7 +2,7 @@ function getWounds {
     Param (
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
-        [int]
+        [float]
         $hits,
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]

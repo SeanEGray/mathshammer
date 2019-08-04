@@ -50,34 +50,40 @@ function Hammer-Maths {
         $leadership
     )
 
-$responseObject = @{
-    totalDamage = 0
-    destroyedModels = 0
-    cravenModels = 0
-}
+    $responseObject = @{
+        totalHits = 0
+        totalWounds = 0
+        totalUnsavedWounds = 0
+        totalDamage = 0
+        destroyedModels = 0
+        cravenModels = 0
+    }
 
 
-# First we roll to hit
-$totalHits = getHits -bs $bs -Models $models -Attacks $Attacks
+    # First we roll to hit
+    $responseObject.totalHits = getHits -bs $bs -Models $models -Attacks $Attacks
 
-if ($totalHits -gt 0) {
-    # Then we roll to wound
-    $totalWounds = getWounds -hits $totalHits -s $s -t $t
+    if ($responseObject.totalHits -gt 0) {
+        # Then we roll to wound
+        $responseObject.totalWounds = getWounds -hits $responseObject.totalHits -s $s -t $t
 
-    if ($totalWounds -gt 0) {
-        # Then we roll saves
-        $totalUnsavedWouds = getUnsavedWounds -wounds $totalWounds -ap $ap -save $save -invulnerableSave $invulnerableSave
+        if ($responseObject.totalWounds -gt 0) {
+            # Then we roll saves
+            $responseObject.totalUnsavedWounds = getUnsavedWounds -wounds $responseObject.totalWounds -ap $ap -save $save -invulnerableSave $invulnerableSave
 
-        if ($totalUnsavedWouds -gt 0) {
-            # Then we roll damage
-            $responseObject = getDamage -unsavedWounds $totalUnsavedWouds -damage $damage -targetWouds $targetWounds -targetModels $targetModels
+            if ($responseObject.totalUnsavedWounds -gt 0) {
+                # Then we roll damage
+                $damageObject = getDamage -unsavedWounds $responseObject.totalUnsavedWounds -damage $damage -targetWounds $targetWounds -targetModels $targetModels
+                $responseObject.totalDamage = $damageObject.totalDamage
+                $responseObject.destroyedModels = $damageObject.destroyedModels
 
-            if ($responseObject.destroyedModels -gt 0 -and $responseObject.destroyedModels -lt $targetModels) {
-                # Check for fleeing models
-                $responseObject.cravenModels = getCravens -remainingModels ($targetModels - $responseObject.destroyedModels) -destroyedModels $responseObject.destroyedModels -leadership $leadership
+                if ($responseObject.destroyedModels -gt 0 -and $responseObject.destroyedModels -lt $targetModels) {
+                    # Check for fleeing models
+                    $responseObject.cravenModels = getCravens -remainingModels ($targetModels - $responseObject.destroyedModels) -destroyedModels $responseObject.destroyedModels -leadership $leadership
+                }
             }
         }
     }
-}
 
-$responseObject | ConvertTo-Json
+    $responseObject | ConvertTo-Json
+}

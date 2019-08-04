@@ -2,7 +2,7 @@ function getDamage {
     Param (
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
-        [int]
+        [float]
         $unsavedWounds,
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
@@ -25,11 +25,11 @@ function getDamage {
 
     $i = 0
     $totalDamage = 0
-    foreach ($w in $unsavedWounds) {
+    foreach ($w in 1..$unsavedWounds) {
         if ($i -eq $targetModels) {
             break
         }
-        foreach ($d in $damage) {
+        foreach ($d in 1..$damage) {
             if ($i -eq $targetModels) {
                 break
             }
@@ -37,14 +37,14 @@ function getDamage {
             $totalDamage++
             if ($targetUnit[$i] -eq 0) {
                 $i++
-                continue
+                break
             }
         }
     }
 
     $returnObject = @{
         totalDamage = $totalDamage
-        destroyedModels = $targetUnit.where({($_ -eq 0).Count})
+        destroyedModels = $targetUnit.where({($_ -eq 0)}).Count
     }
 
     return $returnObject

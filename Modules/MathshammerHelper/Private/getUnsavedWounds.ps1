@@ -2,7 +2,7 @@ function getUnsavedWounds {
     Param (
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
-        [int]
+        [float]
         $wounds,
         [Parameter(Mandatory=$false)]
         [ValidateRange('NonNegative')]

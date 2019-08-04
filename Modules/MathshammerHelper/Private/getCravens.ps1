@@ -2,11 +2,11 @@ function getCravens {
     Param (
         [Parameter(Mandatory=$true)]
         [ValidateRange(1,49)]
-        [int]
+        [float]
         $remainingModels,
         [Parameter(Mandatory=$true)]
         [ValidateRange(1,49)]
-        [int]
+        [float]
         $destroyedModels,
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
