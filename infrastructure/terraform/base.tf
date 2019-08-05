@@ -1,6 +1,6 @@
 terraform {
     backend "remote" {
-        organization = "${var.backendorganisation}"
+        organization = "${var.backendOrganisation}"
 
         workspaces = {
             prefix = "mathshammer"
