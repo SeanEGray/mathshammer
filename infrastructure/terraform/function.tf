@@ -17,7 +17,6 @@ resource "azurerm_storage_account" "mathshammer" {
   account_tier               = "Standard"
   account_replication_type   = "LRS"
   enable_https_traffic_only  = true
-  virtual_network_subnet_ids = ["${azurerm_subnet.mathshammer.id}"]
   tags = {
     environment = "${var.environment}"
     application = "mathshammer"
