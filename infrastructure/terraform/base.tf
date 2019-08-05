@@ -1,3 +1,14 @@
+terraform {
+    backend "remote" {
+        organization = "${var.backendorganisation}"
+
+        workspaces = {
+            prefix = "mathshammer"
+            token = "${var.token}"
+        }
+    }
+}
+
 provider "azurerm" {
 
 }
