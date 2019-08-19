@@ -1,4 +1,5 @@
 function Hammer-Maths {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseApprovedVerbs", "")] # Executive decision that Hammer should be an approved verb
     Param (
         [Parameter(Mandatory=$true)]
         [ValidateRange('Positive')]
