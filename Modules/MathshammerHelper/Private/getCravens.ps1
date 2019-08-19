@@ -22,6 +22,6 @@ function getCravens {
     else {
         $cravenModels = 0
     }
-    
+
     return $cravenModels
 }

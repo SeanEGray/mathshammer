@@ -23,5 +23,5 @@ function getHits {
     $chanceToHit = (7 - $bs) / 6
 
     $totalHits = $totalAttacks * $chanceToHit
-    return $totalHits 
+    return $totalHits
 }
