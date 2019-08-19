@@ -1,4 +1,4 @@
-Install-Module PSScriptAnalyzer
+Install-Module PSScriptAnalyzer -Force
 
 $rules = Get-ScriptAnalyzerRule
 
