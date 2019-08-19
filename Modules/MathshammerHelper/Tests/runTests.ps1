@@ -1,4 +1,5 @@
 Install-Module PSScriptAnalyzer -Force
+Install-Module Pester -Force
 
 $rules = Get-ScriptAnalyzerRule
 
@@ -10,5 +11,5 @@ Describe 'PowerShell ScriptAnalyzer tests' {
     }
 }
 
-Install-Module Pester -Force
+
 Invoke-Pester -Script *.Tests.ps1 -OutputFormat NUnitXml -OutputFile 'TEST-HelperModule.xml'
