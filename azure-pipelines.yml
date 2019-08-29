@@ -24,9 +24,11 @@ steps:
   condition: succeededOrFailed()
 
 - task: AzurePowerShell@4
+  displayName: 'Install terraform'
   inputs:
     azureSubscription: azure
     azurePowerShellVersion: latestVersion
     scriptType: FilePath
     scriptPath: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
+    ScriptArguments: ''
 
