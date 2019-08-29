@@ -20,3 +20,16 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: azure
+    keyVaultName: $(keyVaultName)
+    secretsFilter: terraformCloudToken
+
+- task: AzurePowerShell@4
+  inputs:
+    azureSubscription: azure
+    azurePowerShellVersion: latestVersion
+    scriptType: FilePath
+    scriptPath: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
+
