@@ -7,6 +7,8 @@ Param (
 
 $downloadUrl = "https://releases.hashicorp.com/terraform/$version/terraform_$($version)_linux_amd64.zip"
 
-Invoke-WebRequest -Uri $downloadUrl -OutFile "$($env:temp)/terraform.zip"
+"Downloading $downloadUrl"
+
+Invoke-WebRequest -Uri $downloadUrl -OutFile "$($env:temp)/terraform.zip" -UseBasicParsing
 
 Expand-Archive -Path "$($env:temp)/terraform.zip" -DestinationPath './' -Force
