@@ -8,6 +8,9 @@ pr:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+- group: coreVariables
+
 steps:
 - pwsh: ./runTests.ps1
   displayName: 'Run helper module tests'
@@ -16,14 +19,14 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: NUnit
-    testResultsFiles: '**/TEST-*.xml' 
+    testResultsFiles: '**/TEST-*.xml'
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
 - task: AzureKeyVault@1
   inputs:
     azureSubscription: azure
-    keyVaultName: $(keyVaultName)
+    keyVaultName: $(coreKeyVaultName)
     secretsFilter: terraformCloudToken
 
 - task: AzurePowerShell@4
