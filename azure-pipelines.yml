@@ -23,12 +23,6 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
-- task: AzureKeyVault@1
-  inputs:
-    azureSubscription: azure
-    keyVaultName: $(coreKeyVaultName)
-    secretsFilter: terraformCloudToken
-
 - task: AzurePowerShell@4
   inputs:
     azureSubscription: azure
