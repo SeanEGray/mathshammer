@@ -23,12 +23,14 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
-- task: AzurePowerShell@4
+- pwsh: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
   displayName: 'Install terraform'
+
+- task: AzurePowerShell@4
+  displayName: 'terraform apply'
   inputs:
     azureSubscription: azure
     azurePowerShellVersion: latestVersion
     scriptType: FilePath
-    scriptPath: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
-    scriptArguments: -Version '0.12.7'
-
+    scriptPath: '$(Build.SourcesDirectory)/infrastructure/Invoke-Terraform.ps1'
+    scriptArguments: -Path '$(Build.SourcesDirectory)/infrastructure/terraform'
