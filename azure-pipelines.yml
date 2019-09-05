@@ -30,5 +30,5 @@ steps:
     azurePowerShellVersion: latestVersion
     scriptType: FilePath
     scriptPath: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
-    scriptArguments: ''
+    scriptArguments: -Version '0.12.7'
 
