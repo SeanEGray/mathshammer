@@ -1,10 +1,10 @@
 <#
 .Synopsis
-  Invokes terraform
+    Invokes terraform
 .DESCRIPTION
-  Invokes terraform against the specified directory
+    Invokes terraform against the specified directory
 .EXAMPLE
-  ./Invoke-Terraform.ps1 -Path 'terraform/portal'
+    ./Invoke-Terraform.ps1 -Path './terraform'
 #>
 [Cmdletbinding(SupportsShouldProcess = $true)]
 Param (
@@ -16,8 +16,8 @@ $executable = "$((Get-Location).Path)/terraform"
 
 Set-Location -Path $Path
 
-. $executable "init"
+Invoke-Expression $executable "init"
 
 if ($PSCmdlet.ShouldProcess($Path, 'terraform apply')) {
-    . $executable "apply -input=false -auto-approve"
+    Invoke-Expression $executable "apply -input=false -auto-approve"
 }
