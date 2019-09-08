@@ -16,8 +16,8 @@ $executable = "$((Get-Location).Path)/terraform"
 
 Set-Location -Path $Path
 
-& {$executable + ' init'}
+& [scriptblock]"$executable init"
 
 if ($PSCmdlet.ShouldProcess($Path, 'terraform apply')) {
-    & {$executable + ' apply -input=false -auto-approve'}
+    & [scriptblock]"$executable apply -input=false -auto-approve"
 }
