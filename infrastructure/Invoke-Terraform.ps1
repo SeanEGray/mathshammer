@@ -12,12 +12,10 @@ Param (
     [string]$Path
 )
 
-$executable = "$((Get-Location).Path)/terraform"
-
 Set-Location -Path $Path
 
-Invoke-Command "$executable init"
+& ~/terraform init
 
 if ($PSCmdlet.ShouldProcess($Path, 'terraform apply')) {
-    Invoke-Command "$executable apply -input=false -auto-approve"
+    & ~/terraform apply -input=false -auto-approve
 }
