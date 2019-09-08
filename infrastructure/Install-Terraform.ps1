@@ -2,7 +2,12 @@ Param (
     # Version of terraform to install
     [Parameter(Mandatory = $false)]
     [String]
-    $Version = '0.12.7'
+    $Version = '0.12.7',
+
+    # Download path
+    [Parameter(Mandatory = $true)]
+    [String]
+    $Path
 )
 
 $downloadUrl = "https://releases.hashicorp.com/terraform/$version/terraform_$($version)_linux_amd64.zip"
@@ -11,6 +16,5 @@ $downloadUrl = "https://releases.hashicorp.com/terraform/$version/terraform_$($v
 
 Invoke-WebRequest -Uri $downloadUrl -OutFile "$($env:temp)/terraform.zip"
 
-Expand-Archive -Path "$($env:temp)/terraform.zip" -DestinationPath '~/' -Force
+Expand-Archive -Path "$($env:temp)/terraform.zip" -DestinationPath $Path -Force
 
-$PWD

@@ -23,7 +23,7 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
-- pwsh: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
+- pwsh: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1 -Path $(Build.SourcesDirectory)/infrastructure'
   displayName: 'Install terraform'
 
 #- task: AzureCLI@1
@@ -40,4 +40,4 @@ steps:
     azureSubscription: azure
     scriptLocation: 'scriptPath'
     scriptPath: '$(Build.SourcesDirectory)/infrastructure/runTerraform.sh'
-    arguments: '$(Build.SourcesDirectory)/infrastructure/terraform'
+    arguments: '$(Build.SourcesDirectory)/infrastructure $(Build.SourcesDirectory)/infrastructure/terraform'
