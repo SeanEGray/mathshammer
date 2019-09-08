@@ -26,11 +26,18 @@ steps:
 - pwsh: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1'
   displayName: 'Install terraform'
 
-- task: AzurePowerShell@4
-  displayName: 'terraform apply'
+#- task: AzureCLI@1
+#  displayName: 'terraform apply'
+#  inputs:
+#    azureSubscription: azure
+#    azurePowerShellVersion: latestVersion
+#    scriptType: FilePath
+#    scriptPath: '$(Build.SourcesDirectory)/infrastructure/Invoke-Terraform.ps1'
+#    scriptArguments: -Path '$(Build.SourcesDirectory)/infrastructure/terraform'
+
+- task: AzureCLI@1
   inputs:
     azureSubscription: azure
-    azurePowerShellVersion: latestVersion
-    scriptType: FilePath
-    scriptPath: '$(Build.SourcesDirectory)/infrastructure/Invoke-Terraform.ps1'
-    scriptArguments: -Path '$(Build.SourcesDirectory)/infrastructure/terraform'
+    scriptLocation: 'scriptPath'
+    scriptPath: '$(Build.SourcesDirectory)/infrastructure/runTerraform.sh'
+    arguments: '$(Build.SourcesDirectory)/infrastructure/terraform'
