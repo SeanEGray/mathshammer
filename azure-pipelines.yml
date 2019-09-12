@@ -23,6 +23,17 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
+- task: AzureKeyVault@1
+  displayName: 'Load secrets'
+  inputs:
+    azureSubscription: azure
+    KeyVaultName: $(coreKeyVaultName)
+
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in **/base.tf, **/variables.tf'
+  inputs:
+    targetFiles: '**/base.tf, **/variables.tf'
+
 - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
   displayName: 'Install terraform'
   inputs:

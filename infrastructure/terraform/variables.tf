@@ -1,12 +1,8 @@
 variable "location" {
     type = string
-}
-variable "backendOrganisation" {
-    type = string
-}
-variable "token" {
-    type = string
+    default = "WestEurope"
 }
 variable "environment" {
     type = string
+    default = "dev"
 }
