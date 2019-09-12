@@ -23,17 +23,29 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
-- pwsh: '$(Build.SourcesDirectory)/infrastructure/Install-Terraform.ps1 -Path $(Build.SourcesDirectory)/infrastructure'
+- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
   displayName: 'Install terraform'
+  inputs:
+    terraformVersion: 0.12.7
 
-#- task: AzureCLI@1
-#  displayName: 'terraform apply'
-#  inputs:
-#    azureSubscription: azure
-#    azurePowerShellVersion: latestVersion
-#    scriptType: FilePath
-#    scriptPath: '$(Build.SourcesDirectory)/infrastructure/Invoke-Terraform.ps1'
-#    scriptArguments: -Path '$(Build.SourcesDirectory)/infrastructure/terraform'
+- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+  displayName: 'terraform init'
+  inputs:
+    command: init
+    workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
+
+- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+  displayName: 'terraform validate'
+  inputs:
+    command: validate
+    workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
+
+
+- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+  displayName: 'terraform apply'
+  inputs:
+    command: apply
+    workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
 
 - task: AzureCLI@1
   inputs:
