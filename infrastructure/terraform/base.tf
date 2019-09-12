@@ -1,10 +1,10 @@
 terraform {
     backend "remote" {
         organization = "#{backendOrganisation}#"
+        token = "#{terraformCloudToken}#"
 
         workspaces {
             prefix = "mathshammer"
-            token = "#{terraformCloudToken}#"
         }
     }
 }
