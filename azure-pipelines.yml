@@ -24,9 +24,9 @@ steps:
   condition: succeededOrFailed()
 
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3
-  displayName: 'Replace tokens in **/base.tf, **/variables.tf'
+  displayName: 'Replace tokens in **/base.tf'
   inputs:
-    targetFiles: '**/base.tf, **/variables.tf'
+    targetFiles: '**/base.tf'
 
 - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
   displayName: 'Install terraform'
