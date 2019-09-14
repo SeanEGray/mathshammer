@@ -4,7 +4,7 @@ terraform {
         token = "#{terraformCloudToken}#"
 
         workspaces {
-            prefix = "mathshammer"
+            name = "mathshammer"
         }
     }
 }
