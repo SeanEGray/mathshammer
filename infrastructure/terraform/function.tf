@@ -48,7 +48,7 @@ resource "azurerm_function_app" "mathshammer" {
   storage_connection_string   = "${azurerm_storage_account.mathshammer.primary_connection_string}"
   https_only                  = true
   version                     = "~2"
-  use_32_bit_worker_processes = false
+  use_32_bit_worker_process   = false
   tags = {
     environment = "${var.environment}"
     application = "mathshammer"
