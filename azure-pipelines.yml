@@ -51,3 +51,4 @@ steps:
   inputs:
     command: apply
     workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
+    environmentServiceName: azure
