@@ -51,10 +51,3 @@ steps:
   inputs:
     command: apply
     workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
-
-- task: AzureCLI@1
-  inputs:
-    azureSubscription: azure
-    scriptLocation: 'scriptPath'
-    scriptPath: '$(Build.SourcesDirectory)/infrastructure/runTerraform.sh'
-    arguments: '$(Build.SourcesDirectory)/infrastructure $(Build.SourcesDirectory)/infrastructure/terraform'
