@@ -52,3 +52,17 @@ steps:
     command: apply
     workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
     environmentServiceName: azure
+
+- task: ArchiveFiles@2
+  displayName: 'Archive $(System.DefaultWorkingDirectory)/functionApp'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/functionApp'
+    includeRootFolder: false
+
+- task: AzureFunctionApp@1
+  displayName: 'Azure Function App Deploy: mathshammer'
+  inputs:
+    azureSubscription: azure
+    appType: functionApp
+    appName: mathshammer
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
