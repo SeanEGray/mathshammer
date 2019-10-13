@@ -14,7 +14,7 @@ variables:
 steps:
 - pwsh: ./runTests.ps1
   displayName: 'Run helper module tests'
-  workingDirectory: '$(Build.SourcesDirectory)/Modules/MathshammerHelper/Tests'
+  workingDirectory: '$(Build.SourcesDirectory)/functionApp/Modules/MathshammerHelper/Tests'
 
 - task: PublishTestResults@2
   inputs:
@@ -44,7 +44,6 @@ steps:
   inputs:
     command: validate
     workingDirectory: '$(Build.SourcesDirectory)/infrastructure/terraform'
-
 
 - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
   displayName: 'terraform apply'
