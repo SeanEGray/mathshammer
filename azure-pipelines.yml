@@ -53,9 +53,9 @@ steps:
     environmentServiceName: azure
 
 - task: ArchiveFiles@2
-  displayName: 'Archive $(System.DefaultWorkingDirectory)/functionApp'
+  displayName: 'Archive $(Build.SourcesDirectory)/functionApp'
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/functionApp'
+    rootFolderOrFile: '$(Build.SourcesDirectory)/functionApp'
     includeRootFolder: false
 
 - task: AzureFunctionApp@1
