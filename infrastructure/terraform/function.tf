@@ -51,6 +51,9 @@ resource "azurerm_function_app" "mathshammer" {
   site_config {
     use_32_bit_worker_process   = false
   }
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.mathshammer.instrumentation_key}"
+  }
   tags = {
     environment = "${var.environment}"
     application = "mathshammer"
