@@ -10,7 +10,10 @@ terraform {
 }
 
 provider "azurerm" {
-    use_msi = true
+    client_id = "#{terraformClientId}#"
+    client_secret = "#{terraformClientSecret}#"
+    subscription_id = "#{subscriptionId}#"
+    tenant_id = "#{tenantId}#"
 }
 
 resource "azurerm_resource_group" "mathshammer" {
