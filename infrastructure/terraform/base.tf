@@ -10,10 +10,10 @@ terraform {
 }
 
 provider "azurerm" {
-    client_id = "#{terraformClientId}#"
-    client_secret = "#{terraformClientSecret}#"
-    subscription_id = "#{subscriptionId}#"
-    tenant_id = "#{tenantId}#"
+    client_id = "${var.clientid}"
+    client_secret = "${var.clientsecret}"
+    subscription_id = "${var.subscriptionid}"
+    tenant_id = "${var.tenantid}"
 }
 
 resource "azurerm_resource_group" "mathshammer" {
