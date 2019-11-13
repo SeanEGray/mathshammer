@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<form id="form">
-    Attacking models: <input type="text" id="models" value="5"><br />
-    Attacker BS/WS: <input type="number" id="bs" value="4"><br />
-    Attacks per model (A): <input type="text" id="attacks" value="2"><br />
-    Attacker Strength (S): <input type="text" id="s" value="4"><br />
-    Weapon Damage: <input type="text" id="damage" value="1"><br />
-    Weapon AP (use positive numbers): <input type="text" id="ap" value="1"><br />
-    Target Toughness (T): <input type="text" id="t" value="4"><br />
-    Target Save (Sv): <input type="text" naidme="save" value="3"><br />
-    Target Invulnerable Save: <input type="text" id="invulnerableSave" value="3"><br />
-    Target wounds (W): <input type="text" id="targetWounds" value="1"><br />
-    Target models: <input type="text" id="targetModels" value="5"><br />
-    Target leadership (Ld): <input type="text" id="leadership" value="7"><br />
-</form>
-<button onclick="hammer()">Hammer maths!</button>
+    <form id="form">
+        Attacking models: <input type="number" id="models" value="5"><br />
+        Attacker BS/WS: <input type="number" id="bs" value="4"><br />
+        Attacks per model (A): <input type="number" id="attacks" value="2"><br />
+        Attacker Strength (S): <input type="number" id="s" value="4"><br />
+        Weapon Damage: <input type="number" id="damage" value="1"><br />
+        Weapon AP (use positive numbers): <input type="number" id="ap" value="1"><br />
+        Target Toughness (T): <input type="number" id="t" value="4"><br />
+        Target Save (Sv): <input type="number" naidme="save" value="3"><br />
+        Target Invulnerable Save: <input type="number" id="invulnerableSave" value="3"><br />
+        Target wounds (W): <input type="number" id="targetWounds" value="1"><br />
+        Target models: <input type="number" id="targetModels" value="5"><br />
+        Target leadership (Ld): <input type="number" id="leadership" value="7"><br />
+    </form>
+    <button onclick="hammer()">Hammer maths!</button>
 
-<p id="output"></p>
+    <p id="output"></p>
 
-<script>
-function hammer() {
-    var body = {
-        models: document.getElementById("models").value,
-        bs: document.getElementById("bs").value,
-        attacks: document.getElementById("attacks").value,
-        s: document.getElementById("s").value,
-        damage: document.getElementById("damage").value,
-        ap: document.getElementById("ap").value,
-        t: document.getElementById("t").value,
-        save: document.getElementById("save").value,
-        invulnerableSave: document.getElementById("invulnerableSave").value,
-        targetWounds: document.getElementById("targetWounds").value,
-        targetModels: document.getElementById("targetModels").value,
-        leadership: document.getElementById("leadership").value
-    }
-    const response = await fetch('https://mathshammer.azurewebsites.net/api/mathshammer', {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-            'Content-Type': 'application/json'
+    <script>
+        function hammer() {
+            var body = {
+                models: document.getElementById("models").value,
+                bs: document.getElementById("bs").value,
+                attacks: document.getElementById("attacks").value,
+                s: document.getElementById("s").value,
+                damage: document.getElementById("damage").value,
+                ap: document.getElementById("ap").value,
+                t: document.getElementById("t").value,
+                save: document.getElementById("save").value,
+                invulnerableSave: document.getElementById("invulnerableSave").value,
+                targetWounds: document.getElementById("targetWounds").value,
+                targetModels: document.getElementById("targetModels").value,
+                leadership: document.getElementById("leadership").value
+            }
+            const response = await fetch('https://mathshammer.azurewebsites.net/api/mathshammer', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const json = await response.json();
+
+            document.getElementById("output").innerHTML = json;
         }
-    });
-    const json = await response.json();
-
-    document.getElementById("output").innerHTML = json;
-}
-</script>
+    </script>
 
 </body>
+
 </html>
