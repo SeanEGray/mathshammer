@@ -16,7 +16,7 @@ resource "azurerm_storage_account" "web" {
 }
 
 resource "azurerm_storage_container" "web" {
-    name                  = "web"
+    name                  = "$web"
     storage_account_name  = "${azurerm_storage_account.web.name}"
     container_access_type = "blob"
 }
