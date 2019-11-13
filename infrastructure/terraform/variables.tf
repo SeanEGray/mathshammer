@@ -18,7 +18,3 @@ variable "tenantid" {
     type = string
     default = "#{tenantId}#"
 }
-variable "subscriptionid" {
-    type = string
-    default = "#{subscriptionId}#"
-}
