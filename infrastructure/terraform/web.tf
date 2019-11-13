@@ -13,11 +13,13 @@ resource "azurerm_storage_account" "web" {
     application = "mathshammer"
     provisioner = "terraform"
   }
-
+}
+resource "null_resource" "staticwebsite" {
   provisioner "local-exec" {
     command = "az login  --service-principal -u ${var.clientid} -p ${var.clientsecret} --tenant ${var.tenantid} | az storage blob service-properties update --account-name ${azurerm_storage_account.web.name} --static-website  --index-document index.html --404-document 404.html"
   }
 }
+
 
 resource "azurerm_storage_blob" "indexhtml" {
   name                   = "index.html"
@@ -26,4 +28,5 @@ resource "azurerm_storage_blob" "indexhtml" {
   type                   = "Block"
   source                 = "index.html"
   content_type           = "text/html"
+  depends_on             = [null_resource.staticwebsite]
 }
