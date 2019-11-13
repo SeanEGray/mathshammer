@@ -26,5 +26,5 @@ resource "azurerm_storage_blob" "indexhtml" {
     storage_account_name   = "${azurerm_storage_account.web.name}"
     storage_container_name = "${azurerm_storage_container.web.name}"
     type                   = "Block"
-    source                 = "../../web/index.html"
+    source                 = "index.html"
 }
