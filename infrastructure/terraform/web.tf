@@ -15,7 +15,7 @@ resource "azurerm_storage_account" "web" {
   }
 
   provisioner "local-exec" {
-    command = "az login  --service-principal -u \"${var.armclientid}\" -p \"${var.armclientsecret}\" --tenant \"${var.armtenantid}\" | az storage blob service-properties update --account-name ${azurerm_storage_account.web.name} --static-website  --index-document index.html --404-document 404.html"
+    command = "az login  --service-principal -u \"${var.clientid}\" -p \"${var.clientsecret}\" --tenant \"${var.tenantid}\" | az storage blob service-properties update --account-name ${azurerm_storage_account.web.name} --static-website  --index-document index.html --404-document 404.html"
   }
 }
 
