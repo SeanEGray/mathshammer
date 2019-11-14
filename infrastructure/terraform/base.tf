@@ -18,9 +18,9 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "mathshammer" {
     name = "mathshammer${var.environment}"
-    location = "${var.location}"
+    location = var.location
     tags = {
-        environment = "${var.environment}"
+        environment = var.environment
         application = "mathshammer"
         provisioner = "terraform"
     }
