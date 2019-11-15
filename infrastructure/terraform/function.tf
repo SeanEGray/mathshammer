@@ -50,6 +50,9 @@ resource "azurerm_function_app" "mathshammer" {
   version                     = "~2"
   site_config {
     use_32_bit_worker_process   = false
+    cors {
+      allowed_origins = *
+    }
   }
   app_settings = {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.mathshammer.instrumentation_key}"
