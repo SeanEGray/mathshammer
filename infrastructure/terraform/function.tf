@@ -51,7 +51,7 @@ resource "azurerm_function_app" "mathshammer" {
   site_config {
     use_32_bit_worker_process   = false
     cors {
-      allowed_origins = *
+      allowed_origins = "*"
     }
   }
   app_settings = {
