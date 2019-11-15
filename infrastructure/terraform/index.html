@@ -22,6 +22,18 @@
     <p id="output"></p>
 
     <script>
+        async function sendRequest(body) {
+            const response = await fetch('https://mathshammer.azurewebsites.net/api/mathshammer', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const json = await response.json();
+            return json;
+        }
+
         function hammer() {
             var body = {
                 models: document.getElementById("models").value,
@@ -37,16 +49,9 @@
                 targetModels: document.getElementById("targetModels").value,
                 leadership: document.getElementById("leadership").value
             }
-            const response = await fetch('https://mathshammer.azurewebsites.net/api/mathshammer', {
-                method: 'POST',
-                body: JSON.stringify(body),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const json = await response.json();
-
-            document.getElementById("output").innerHTML = json;
+            sendRequest(body).then((json) => {
+                document.getElementById("output").innerHTML = json;
+            })
         }
     </script>
 
