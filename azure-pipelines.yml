@@ -67,3 +67,4 @@ steps:
     appName: mathshammer
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     deploymentMethod: runFromPackage
+    resourceGroupName: mathshammerdev
