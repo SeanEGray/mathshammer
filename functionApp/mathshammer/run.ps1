@@ -4,7 +4,7 @@ using namespace System.Net
 param($Request, $TriggerMetadata)
 
 # Write to the Azure Functions log stream.
-Write-Host "New request: $($Request.Body)"
+Write-Verbose "New request: $($Request.Body)"
 
 Import-Module MathshammerHelper
 
