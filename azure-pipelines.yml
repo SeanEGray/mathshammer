@@ -66,3 +66,4 @@ steps:
     appType: functionApp
     appName: mathshammer
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    deploymentMethod: runFromPackage
