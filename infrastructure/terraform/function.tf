@@ -49,7 +49,7 @@ resource "azurerm_function_app" "mathshammer" {
   https_only                  = true
   version                     = "~2"
   site_config {
-    use_32_bit_worker_process   = false
+    use_32_bit_worker_process   = true
     #cors {
     #  allowed_origins = ["*"]
    # }
