@@ -23,7 +23,7 @@ $inputSplat = @{
     leadership = $Request.Body.leadership 
 }
 
-$responseObject = Get-HammeredMaths @inputSplat
+$responseObject = Hammer-Maths @inputSplat
 
 $status = [HttpStatusCode]::OK
 $body = $responseObject | ConvertTo-Json

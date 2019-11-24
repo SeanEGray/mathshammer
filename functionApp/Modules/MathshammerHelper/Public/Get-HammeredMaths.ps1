@@ -1,4 +1,4 @@
-function Get-HammeredMaths {
+function Hammer-Maths {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseApprovedVerbs", "")] # Executive decision that Hammer should be an approved verb
     Param (
         # Ballistic Skill
