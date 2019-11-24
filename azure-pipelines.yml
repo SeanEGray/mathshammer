@@ -57,6 +57,7 @@ steps:
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)/functionApp'
     includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
 
 - task: AzureFunctionApp@1
   displayName: 'Azure Function App Deploy: mathshammer'
